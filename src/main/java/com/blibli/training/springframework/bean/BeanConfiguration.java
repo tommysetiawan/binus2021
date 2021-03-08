@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,18 +17,9 @@ public class BeanConfiguration {
 
   @Bean(name = "users")
   public List<User> users(){
-    List<User> users = new ArrayList<>();
-    User firstUser = User.builder()
-        .firstName("tommy")
-        .lastName("setiawan")
-        .age(18).build();
-
-    User secondUser = User.builder()
-        .firstName("jodi")
-        .lastName("subarja")
-        .age(18).build();
-    users.add(firstUser);
-    users.add(secondUser);
-    return users;
+    User firstUser = User.builder().firstName("tommy").lastName("setiawan").age(18).build();
+    User secondUser = User.builder().firstName("jodi").lastName("subarja").age(18).build();
+    User thirdUser = User.builder().firstName("sebastian").lastName("bagya").age(18).build();
+    return new ArrayList<>(Arrays.asList(firstUser, secondUser, thirdUser));
   }
 }
