@@ -3,7 +3,6 @@ package com.blibli.training.springframework.controller;
 import com.blibli.training.springframework.entity.User;
 import com.blibli.training.springframework.service.UserService;
 import io.restassured.RestAssured;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
