@@ -22,14 +22,13 @@ public class UserServiceImpl implements UserService {
     return userRepository.getUsers();
   }
 
-  public List<User> getUserByName(String name){
-    List<User> userResult = new ArrayList<>();
+  public User getUserByName(String name){
     for(User user:userRepository.getUsers()){
       if(user.getFirstName().equals(name)){
-        userResult.add(user);
+        return user;
       }
     }
-    return userResult;
+    return null;
   }
 
   public User addUser(User user){
