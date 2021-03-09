@@ -58,12 +58,10 @@ public class CartServiceImplTest {
   @Test
   public void addToCart() {
     Cart expected = Cart.builder().customerName(OTHER_CUSTOMER_NAME).itemName(OTHER_ITEM_NAME).quantity(5).build();
-    AbstractList abstractList = Mockito.mock(AbstractList.class);
-    Mockito.when(abstractList.add(expected)).thenReturn(true);
-    Mockito.when(cartRepository.getCarts()).thenReturn(abstractList);
+    Mockito.when(cartRepository.addCart(expected)).thenReturn(true);
     Cart cart = cartService.addToCart(expected);
     Assert.assertEquals(expected, cart);
-    Mockito.verify(cartRepository).getCarts();
+    Mockito.verify(cartRepository).addCart(expected);
   }
 
   @Test
@@ -87,6 +85,14 @@ public class CartServiceImplTest {
     Mockito.when(cartRepository.removeCarts(Cart.builder().customerName(CUSTOMER_NAME).itemName(ITEM_NAME).quantity(1).build())).thenReturn(true);
     Assert.assertTrue(cartService.deleteCart(ITEM_NAME, CUSTOMER_NAME));
     Mockito.verify(cartRepository).removeCarts(Cart.builder().customerName(CUSTOMER_NAME).itemName(ITEM_NAME).quantity(1).build());
+    Mockito.verify(cartRepository).getCarts();
+  }
+
+  @Test
+  public void deleteCart_notFound() {
+    Mockito.when(cartRepository.removeCarts(null)).thenReturn(true);
+    Assert.assertTrue(cartService.deleteCart(OTHER_ITEM_NAME, OTHER_CUSTOMER_NAME));
+    Mockito.verify(cartRepository).removeCarts(null);
     Mockito.verify(cartRepository).getCarts();
   }
 }

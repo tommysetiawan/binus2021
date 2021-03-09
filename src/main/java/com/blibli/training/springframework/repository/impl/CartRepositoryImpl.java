@@ -24,4 +24,9 @@ public class CartRepositoryImpl implements CartRepository {
   public boolean removeCarts(Cart cart) {
     return carts.remove(cart);
   }
+
+  @Override
+  public boolean addCart(Cart cart) {
+    return carts.add(cart);
+  }
 }
