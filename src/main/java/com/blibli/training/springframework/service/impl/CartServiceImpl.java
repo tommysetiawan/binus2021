@@ -51,6 +51,6 @@ public class CartServiceImpl implements CartService {
         break;
       }
     }
-    return cartRepository.getCarts().remove(existingCart);
+    return cartRepository.removeCarts(existingCart);
   }
 }

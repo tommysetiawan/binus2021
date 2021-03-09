@@ -19,4 +19,9 @@ public class CartRepositoryImpl implements CartRepository {
   public List<Cart> getCarts() {
     return carts;
   }
+
+  @Override
+  public boolean removeCarts(Cart cart) {
+    return carts.remove(cart);
+  }
 }

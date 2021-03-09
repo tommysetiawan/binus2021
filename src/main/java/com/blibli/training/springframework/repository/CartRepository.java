@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface CartRepository {
   List<Cart> getCarts();
+  boolean removeCarts(Cart cart);
 }
