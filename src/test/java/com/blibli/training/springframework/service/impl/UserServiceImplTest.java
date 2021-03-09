@@ -2,6 +2,7 @@ package com.blibli.training.springframework.service.impl;
 
 import com.blibli.training.springframework.entity.User;
 import com.blibli.training.springframework.repository.UserRepository;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +28,11 @@ public class UserServiceImplTest {
     MockitoAnnotations.initMocks(this);
   }
 
+  @After
+  public void tearDown() {
+    Mockito.verifyNoMoreInteractions(userRepository);
+  }
+
   @Test
   public void getAllUser() {
     User firstUser = User.builder().firstName("First1").lastName("Last1").age(25).build();
@@ -36,5 +42,6 @@ public class UserServiceImplTest {
     List<User> result = userService.getAll();
     Assert.assertEquals(expected.size(), result.size());
     Assert.assertEquals(expected.get(0), result.get(0));
+    Mockito.verify(userRepository).getUsers();
   }
 }
