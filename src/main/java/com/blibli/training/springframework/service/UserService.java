@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserService {
   List<User> getAll();
 
-  List<User> getUserByName(String name);
+  User getUserByName(String name);
 
   User addUser(User user);
 }

@@ -29,7 +29,7 @@ public class UserController {
   }
 
   @RequestMapping(path = "/{name}" , method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public @ResponseBody List<User> getUserByFirstName(@PathVariable String name){
+  public @ResponseBody User getUserByFirstName(@PathVariable String name){
     return userService.getUserByName(name);
   }
 
