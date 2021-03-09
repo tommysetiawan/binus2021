@@ -1,5 +1,6 @@
 package com.blibli.training.springframework.bean;
 
+import com.blibli.training.springframework.entity.Cart;
 import com.blibli.training.springframework.entity.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,5 +22,10 @@ public class BeanConfiguration {
     User secondUser = User.builder().firstName("jodi").lastName("subarja").age(18).build();
     User thirdUser = User.builder().firstName("sebastian").lastName("bagya").age(18).build();
     return new ArrayList<>(Arrays.asList(firstUser, secondUser, thirdUser));
+  }
+
+  @Bean(name = "carts")
+  public List<Cart> carts(){
+    return new ArrayList<>();
   }
 }
