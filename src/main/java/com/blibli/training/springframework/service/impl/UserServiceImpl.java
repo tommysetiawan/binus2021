@@ -1,6 +1,7 @@
 package com.blibli.training.springframework.service.impl;
 
 import com.blibli.training.springframework.entity.User;
+import com.blibli.training.springframework.repository.UserRepository;
 import com.blibli.training.springframework.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,16 +16,15 @@ import java.util.List;
 @Component
 public class UserServiceImpl implements UserService {
   @Autowired
-  @Qualifier("users")
-  private List<User> users;
+  private UserRepository userRepository;
 
   public List<User> getAll(){
-    return users;
+    return userRepository.getUsers();
   }
 
   public List<User> getUserByName(String name){
     List<User> userResult = new ArrayList<>();
-    for(User user:users){
+    for(User user:userRepository.getUsers()){
       if(user.getFirstName().equals(name)){
         userResult.add(user);
       }
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
   }
 
   public User addUser(User user){
-    users.add(user);
+    userRepository.getUsers().add(user);
     return user;
   }
 }
